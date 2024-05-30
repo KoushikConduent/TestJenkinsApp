@@ -34,7 +34,7 @@ pipeline {
                 archiveArtifacts artifacts: '**/build/outputs/apk/**/*.apk', allowEmptyArchive: true
                 
                 // Optionally, archive test reports
-                junit '**/build/test-results/**/*.xml'
+                //junit '**/build/test-results/**/*.xml'
             }
         }
     }
