@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        ANDROID_HOME = "C:\Users\52406870\AppData\Local\Android\Sdk"
-        PATH = "${env.PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools"
+        ANDROID_HOME = "C:\\Users\\52406870\\AppData\\Local\\Android\\Sdk"
+        PATH = "${env.PATH}:${ANDROID_HOME}\\tools:${ANDROID_HOME}\\platform-tools"
     }
 
     stages {
