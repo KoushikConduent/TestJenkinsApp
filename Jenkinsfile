@@ -1,56 +1,40 @@
 pipeline {
-  agent any
-  stages {
-    stage('Build') {
-      steps {
-        sh '''pipeline {
     agent any
 
     environment {
-        ANDROID_HOME = "/path/to/android/sdk" // Adjust the path to your Android SDK
-        GRADLE_HOME = "/path/to/gradle" // Adjust the path to your Gradle installation
-        PATH = "${env.PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools:${GRADLE_HOME}/bin"
+        ANDROID_HOME = "C:\Users\52406870\AppData\Local\Android\Sdk"
+        PATH = "${env.PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools"
     }
 
     stages {
-        stage(\'Checkout\') {
+        stage('Checkout') {
             steps {
                 // Checkout the code from the version control system
-                git \'https://your.repo.url/your-android-project.git\'
+                git 'https://github.com/KoushikConduent/TestJenkinsApp.git'
             }
         }
         
-        stage(\'Setup\') {
+        stage('Setup') {
             steps {
                 // Install any required dependencies, e.g., using Gradle
-                sh \'./gradlew dependencies\'
+                sh './gradlew dependencies'
             }
         }
 
-        stage(\'Build\') {
+        stage('Build') {
             steps {
                 // Clean and build the project
-                sh \'./gradlew clean assembleDebug\'
+                sh './gradlew clean assembleDebug'
             }
         }
 
-        stage(\'Test\') {
-            steps {
-                // Run unit tests
-                sh \'./gradlew test\'
-                
-                // Run instrumentation tests
-                sh \'./gradlew connectedAndroidTest\'
-            }
-        }
-
-        stage(\'Archive\') {
+        stage('Archive') {
             steps {
                 // Archive the build artifacts, e.g., APK files
-                archiveArtifacts artifacts: \'**/build/outputs/apk/**/*.apk\', allowEmptyArchive: true
+                archiveArtifacts artifacts: '**/build/outputs/apk/**/*.apk', allowEmptyArchive: true
                 
                 // Optionally, archive test reports
-                junit \'**/build/test-results/**/*.xml\'
+                junit '**/build/test-results/**/*.xml'
             }
         }
     }
@@ -62,17 +46,11 @@ pipeline {
         }
         success {
             // Notify success
-            echo \'Build completed successfully!\'
+            echo 'Build completed successfully!'
         }
         failure {
             // Notify failure
-            echo \'Build failed!\'
+            echo 'Build failed!'
         }
     }
 }
-'''
-        }
-      }
-
-    }
-  }
