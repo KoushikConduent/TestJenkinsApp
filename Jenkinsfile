@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         ANDROID_HOME = "C:\\Users\\52406870\\AppData\\Local\\Android\\Sdk"
-        PATH = "${env.PATH}:${ANDROID_HOME}\\tools:${ANDROID_HOME}\\platform-tools"
+        PATH = "${env.PATH};${ANDROID_HOME}\\tools;${ANDROID_HOME}\\platform-tools"
     }
 
     stages {
@@ -17,14 +17,14 @@ pipeline {
         stage('Setup') {
             steps {
                 // Install any required dependencies, e.g., using Gradle
-                sh './gradlew dependencies'
+                bat './gradlew dependencies'
             }
         }
 
         stage('Build') {
             steps {
                 // Clean and build the project
-                sh './gradlew clean assembleDebug'
+                bat './gradlew clean assembleDebug'
             }
         }
 
