@@ -28,7 +28,7 @@ pipeline {
             }
         }
 
-        stage('Archive and Upload to App Center'') {
+        stage('Archive') {
             steps {
                 // Archive the build artifacts, e.g., APK files
                 archiveArtifacts artifacts: '**/build/outputs/apk/**/*.apk', allowEmptyArchive: false  
